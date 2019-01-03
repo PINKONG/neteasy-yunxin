@@ -1,0 +1,19 @@
+{
+    "name": "pinkong/neteasy-yunxin",
+    "description": "网易云信服务端sdk for laravel/lumen",
+    "authors": [
+        {
+            "name": "Pinch Sun",
+            "email": "me@pinchsun.com"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pinkong\\YunXin\\": "src/"
+        }
+    }
+}
