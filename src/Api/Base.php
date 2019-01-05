@@ -4,6 +4,7 @@ namespace Pinkong\YunXin\Api;
 
 use GuzzleHttp\Client;
 use Pinkong\YunXin\Exception\YunXinBusinessException;
+use Pinkong\YunXin\Exception\YunXinInnerException;
 use Pinkong\YunXin\Exception\YunXinNetworkException;
 
 /**
@@ -97,7 +98,7 @@ class Base
      * http 超时时间
      * @var int $timeout
      */
-    private $timeout = 10;
+    private $timeout = 5;
 
 
     public function __construct($appKey, $appSecrt)
@@ -138,10 +139,11 @@ class Base
 
     /**
      * 发送请求
-     * @param $uri
+     * @param string $uri
      * @param array $data
-     * @return array
+     * @return mixed
      * @throws YunXinBusinessException
+     * @throws YunXinInnerException
      * @throws YunXinNetworkException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -172,8 +174,14 @@ class Base
         $jsonRes = json_decode((string)$body, true);
         if ($jsonRes && is_array($jsonRes) && $jsonRes['code'] == self::BUSINESS_SUCCESS_CODE) {
             return $jsonRes;
+        } elseif ($jsonRes && is_array($jsonRes)) {
+            throw new YunXinBusinessException($jsonRes['desc'], $jsonRes['code']);
         } else {
-            throw new YunXinBusinessException('NetEase Business Error: ' . $body);
+            throw new YunXinInnerException('NetEase inner error: ' . $body);
         }
+    }
+
+    protected function bool2String($var) {
+        return $var ? 'true' : 'false';
     }
 }

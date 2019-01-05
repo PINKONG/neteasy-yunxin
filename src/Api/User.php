@@ -8,7 +8,7 @@
 namespace Pinkong\YunXin\Api;
 
 
-use Pinkong\YunXin\Exception\YunXinArgExcetption;
+use YunXinHelper\Exception\YunXinArgExcetption;
 
 class User extends Base
 {
@@ -107,10 +107,10 @@ class User extends Base
      * @return mixed
      * @throws YunXinArgExcetption
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Pinkong\YunXin\Exception\YunXinBusinessException
-     * @throws \Pinkong\YunXin\Exception\YunXinNetworkException
+     * @throws \YunXinHelper\Exception\YunXinBusinessException
+     * @throws \YunXinHelper\Exception\YunXinNetworkException
      */
-    public function create($accid, $name='', array $props = [], $icon = '', $token = '', $sign = '', $email = '', $birth = '',
+    public function create($accid, $name, array $props = [], $icon = '', $token = '', $sign = '', $email = '', $birth = '',
                             $mobile = '', $gender = 0, $ex = '') {
         $this->verifyUserInfo($accid, $name, $props, $icon, $token, $sign,
             $email, $birth, $mobile, $gender, $ex);
@@ -139,8 +139,8 @@ class User extends Base
      * @return array
      * @throws YunXinArgExcetption
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Pinkong\YunXin\Exception\YunXinBusinessException
-     * @throws \Pinkong\YunXin\Exception\YunXinNetworkException
+     * @throws \YunXinHelper\Exception\YunXinBusinessException
+     * @throws \YunXinHelper\Exception\YunXinNetworkException
      */
     public function update($accid, array $props = [], $token = '') {
         $this->verifyUserInfo($accid, '', $props, '', $token, '',
@@ -160,8 +160,8 @@ class User extends Base
      * @return mixed
      * @throws YunXinArgExcetption
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Pinkong\YunXin\Exception\YunXinBusinessException
-     * @throws \Pinkong\YunXin\Exception\YunXinNetworkException
+     * @throws \YunXinHelper\Exception\YunXinBusinessException
+     * @throws \YunXinHelper\Exception\YunXinNetworkException
      */
     public function refreshToken($accid) {
         $this->verifyUserInfo($accid, '', [], '', '', '',
@@ -180,8 +180,8 @@ class User extends Base
      * @return array
      * @throws YunXinArgExcetption
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Pinkong\YunXin\Exception\YunXinBusinessException
-     * @throws \Pinkong\YunXin\Exception\YunXinNetworkException
+     * @throws \YunXinHelper\Exception\YunXinBusinessException
+     * @throws \YunXinHelper\Exception\YunXinNetworkException
      */
     public function block($accid, $kick = false) {
         $this->verifyUserInfo($accid, '', [], '', '', '',
@@ -200,8 +200,8 @@ class User extends Base
      * @return array
      * @throws YunXinArgExcetption
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Pinkong\YunXin\Exception\YunXinBusinessException
-     * @throws \Pinkong\YunXin\Exception\YunXinNetworkException
+     * @throws \YunXinHelper\Exception\YunXinBusinessException
+     * @throws \YunXinHelper\Exception\YunXinNetworkException
      */
     public function unblock($accid) {
         $this->verifyUserInfo($accid, '', [], '', '', '',
@@ -227,8 +227,8 @@ class User extends Base
      * @return array
      * @throws YunXinArgExcetption
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Pinkong\YunXin\Exception\YunXinBusinessException
-     * @throws \Pinkong\YunXin\Exception\YunXinNetworkException
+     * @throws \YunXinHelper\Exception\YunXinBusinessException
+     * @throws \YunXinHelper\Exception\YunXinNetworkException
      */
     public function updateUserInfo($accid, $name = '', $icon = '', $sign = '', $email = '',
                                    $birth = '', $mobile = '', $gender = '', $ex = '') {
@@ -255,8 +255,8 @@ class User extends Base
      * @return mixed
      * @throws YunXinArgExcetption
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Pinkong\YunXin\Exception\YunXinBusinessException
-     * @throws \Pinkong\YunXin\Exception\YunXinNetworkException
+     * @throws \YunXinHelper\Exception\YunXinBusinessException
+     * @throws \YunXinHelper\Exception\YunXinNetworkException
      */
     public function getUserInfos(array $accids) {
         if (empty($accids)) {
